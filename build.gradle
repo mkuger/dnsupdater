@@ -1,0 +1,32 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.21'
+    id 'application'
+}
+
+group = 'me.micha'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '13'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '13'
+}
+
+application {
+    mainClassName = 'MainKt'
+}
+
+dependencies {
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-route53', version: '1.11.946'
+    implementation 'com.github.kittinunf.fuel:fuel:2.3.1'
+    implementation 'com.github.kittinunf.fuel:fuel-jackson:2.3.1'
+    implementation "com.influxdb:influxdb-client-java:1.12.0"
+}

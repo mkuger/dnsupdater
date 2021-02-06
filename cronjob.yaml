@@ -1,0 +1,20 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: dnsupdater-job
+  labels:
+    app: dnsupdater
+spec:
+  schedule: "5 */3 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: github-registry-token
+          containers:
+            - name: dnsupdater
+              image: ghcr.io/mkuger/dnsupdater
+          restartPolicy: OnFailure
