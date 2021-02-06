@@ -28,5 +28,4 @@ dependencies {
     implementation group: 'com.amazonaws', name: 'aws-java-sdk-route53', version: '1.11.946'
     implementation 'com.github.kittinunf.fuel:fuel:2.3.1'
     implementation 'com.github.kittinunf.fuel:fuel-jackson:2.3.1'
-    implementation "com.influxdb:influxdb-client-java:1.12.0"
 }
