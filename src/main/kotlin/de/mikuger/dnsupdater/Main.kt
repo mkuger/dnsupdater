@@ -21,11 +21,14 @@ fun main(args: Array<String>) {
         }
         .build()
 
-    val recordsToUpdate = System.getenv("DNS_RECORDS_TO_UPDATE")
+    val recordsEnv =  System.getenv("DNS_RECORDS_TO_UPDATE")
+    val recordsToUpdate = recordsEnv
         .split(",")
         .filter { it.isNotBlank() }
         .map { it.trim() }
         .toList()
+
+    println("Checking DNS records: $recordsEnv")
 
     val hostedZone = System.getenv("DNS_HOSTED_ZONES")
     val changes = amzClient.listResourceRecordSets(ListResourceRecordSetsRequest(hostedZone))
