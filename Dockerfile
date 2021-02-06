@@ -3,6 +3,8 @@ MAINTAINER michael@mikuger.de
 
 ENTRYPOINT ["/bin/sh", "-c"]
 
-COPY ./build/libs/dns-updater-1.0-SNAPSHOT.jar /home/javarun/app.jar
+ADD ./build/distributions/dns-updater-1.0.tar /home/javarun
 
-ENTRYPOINT ["java", "-jar", "/home/javarun/app.jar"]
+# ENTRYPOINT ["sh", "/home/javarun/app.jar/bin/dns-updater"]
+#ENTRYPOINT ["sh", "/home/javarun/bin/dns-updater"]
+ENTRYPOINT ["sh", "/home/javarun/dns-updater-1.0/bin/dns-updater"]

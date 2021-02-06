@@ -1,3 +1,5 @@
+package de.mikuger.dnsupdater
+
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider
 import com.amazonaws.regions.Regions
 import com.amazonaws.services.route53.AmazonRoute53ClientBuilder
@@ -5,7 +7,7 @@ import com.amazonaws.services.route53.model.*
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.jackson.responseObject
 
-fun main() {
+fun main(args: Array<String>) {
     val ip = Fuel.get("https://api.ipify.org?format=json")
         .responseObject<IPResult>()
         .third.get()
@@ -60,4 +62,4 @@ fun main() {
         .responseString()
 }
 
-data class IPResult(var ip: String)
+object Main {}

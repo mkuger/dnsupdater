@@ -3,14 +3,12 @@ plugins {
     id 'application'
 }
 
-group = 'me.micha'
-version = '1.0-SNAPSHOT'
+group = 'de.mikuger'
+version = '1.0'
 
 repositories {
     mavenCentral()
 }
-
-
 
 compileKotlin {
     kotlinOptions.jvmTarget = '13'
@@ -21,7 +19,7 @@ compileTestKotlin {
 }
 
 application {
-    mainClassName = 'MainKt'
+    mainClassName = 'de.mikuger.dnsupdater.MainKt'
 }
 
 dependencies {
