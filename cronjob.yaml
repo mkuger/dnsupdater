@@ -17,4 +17,7 @@ spec:
           containers:
             - name: dnsupdater
               image: ghcr.io/mkuger/dnsupdater
+              envFrom:
+                - secretRef:
+                    name: dnsupdater-secret
           restartPolicy: OnFailure
