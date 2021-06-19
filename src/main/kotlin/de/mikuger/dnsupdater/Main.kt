@@ -27,6 +27,7 @@ fun main(args: Array<String>) {
         .split(",")
         .filter { it.isNotBlank() }
         .map { it.trim() }
+        .map{ it.replace("*", "\\052")}
         .toList()
 
     val hostedZone = System.getenv("DNS_HOSTED_ZONES")
