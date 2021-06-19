@@ -30,8 +30,12 @@ fun main(args: Array<String>) {
         .toList()
 
     val hostedZone = System.getenv("DNS_HOSTED_ZONES")
-    val changes = amzClient.listResourceRecordSets(ListResourceRecordSetsRequest(hostedZone))
+    val resourceRecordSets = amzClient.listResourceRecordSets(ListResourceRecordSetsRequest(hostedZone))
         .resourceRecordSets
+    resourceRecordSets.forEach {
+        println(it)
+    }
+    val changes = resourceRecordSets
         .filter { it.type == "A" }
         .filter { it.name in recordsToUpdate }
         .filter { it.resourceRecords.size == 1 }
