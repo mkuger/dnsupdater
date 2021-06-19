@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
         }
         .build()
 
-    val recordsEnv =  System.getenv("DNS_RECORDS_TO_UPDATE")
+    val recordsEnv = System.getenv("DNS_RECORDS_TO_UPDATE")
     println("DNS records to check: $recordsEnv")
     val recordsToUpdate = recordsEnv
         .split(",")
@@ -45,7 +45,11 @@ fun main(args: Array<String>) {
     if (changes.isNotEmpty()) {
         println("Updating ${changes.size} records:")
         changes
-            .map { it.resourceRecordSet.resourceRecords[0].value }
+            .map {
+                it.resourceRecordSet.run {
+                    " ${name} -> ${resourceRecords[0].value}"
+                }
+            }
             .forEach { println("\t$it") }
         amzClient.changeResourceRecordSets(
             ChangeResourceRecordSetsRequest(
@@ -53,7 +57,7 @@ fun main(args: Array<String>) {
                 ChangeBatch(changes)
             )
         )
-        println("${changes.size} records sucessfully updated")
+        println("${changes.size} records successfully updated")
     } else {
         println("Nothing to update.")
     }
